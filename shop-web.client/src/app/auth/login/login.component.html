@@ -1,0 +1,88 @@
+<form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <h1 class="form-title">Вход</h1>
+  <button
+    mat-icon-button
+    type="button"
+    class="products-list-btn"
+    [routerLink]="['/system', 'products']"
+    matTooltip="Список товаров"
+  >
+    <mat-icon>list</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    type="button"
+    class="fill-btn"
+    matTooltip="Заполнить форму логина тестовыми данными"
+    (click)="fillForm()"
+  >
+    <mat-icon>edit_note</mat-icon>
+  </button>
+  <mat-form-field>
+    <mat-label>E-mail:</mat-label>
+    <input
+      id="email"
+      type="text"
+      formControlName="email"
+      placeholder="Вписать email..."
+      matInput
+      #email
+    />
+    <button
+      *ngIf="email.value.trim()"
+      (click)="clearLogin()"
+      type="button"
+      mat-icon-button
+      matSuffix
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint *ngIf="loginForm.get('email')?.touched">
+      <mat-hint *ngIf="loginForm.get('email')?.hasError('required')"
+        >Email не может быть пустым.</mat-hint
+      >
+      <mat-hint *ngIf="loginForm.get('email')?.hasError('email')"
+        >Введите корректный email.</mat-hint
+      >
+    </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Пароль:</mat-label>
+    <input
+      id="password"
+      type="text"
+      formControlName="password"
+      placeholder="Вписать пароль..."
+      matInput
+      #password
+    />
+    <button
+      *ngIf="password.value.trim()"
+      (click)="clearPassword()"
+      type="button"
+      mat-icon-button
+      matSuffix
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint *ngIf="loginForm.get('password')?.touched">
+      <mat-hint *ngIf="loginForm.get('password')?.hasError('required')"
+        >Пароль не может быть пустым.</mat-hint
+      >
+      <mat-hint *ngIf="loginForm.get('password')?.hasError('minlength')"
+        >Минимум 6 символов. Сейчас:
+        {{ loginForm.get("password")?.value.length }}</mat-hint
+      >
+    </mat-hint>
+  </mat-form-field>
+  <button
+    class="submit"
+    type="submit"
+    color="primary"
+    [disabled]="!loginForm.valid"
+    mat-raised-button
+  >
+    Войти
+  </button>
+  <p>Нету аккаунта ? <a routerLink="/auth/register">Зарегистрироватся!</a></p>
+</form>

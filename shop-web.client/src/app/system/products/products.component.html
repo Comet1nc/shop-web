@@ -1,0 +1,20 @@
+<div class="container">
+  <ul class="notes">
+    <li class="note" *ngFor="let product of products">
+      <p class="title">{{ product.name }}</p>
+      <p class="content">{{ product.description }}</p>
+
+      <div class="footer">
+        <p class="price">{{ product.price }} $</p>
+        <button
+          class="add-to-cart"
+          mat-stroked-button
+          color="primary"
+          (click)="addToCart(product)"
+        >
+          Добавить в корзину
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

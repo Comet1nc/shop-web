@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+  <span class="date">{{ date | date : "dd.MM.yyy" }}</span>
+  <ul class="links-list">
+    <li
+      class="link"
+      routerLinkActive="active"
+      [routerLink]="['/system', 'records']"
+    >
+      <a>Корзина</a>
+    </li>
+    <li
+      class="link"
+      routerLinkActive="active"
+      [routerLink]="['/system', 'products']"
+    >
+      <a>Товары</a>
+    </li>
+  </ul>
+  <div class="buttons">
+    <button
+      mat-icon-button
+      class="material-symbols-outlined"
+      [routerLink]="['/auth', 'login']"
+      matTooltip="Войти"
+    >
+      <mat-icon>login</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="onLogout()"
+      [routerLink]="['/auth', 'login']"
+      class="material-symbols-outlined"
+      matTooltip="Выйти"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      [routerLink]="['/auth', 'register']"
+      class="material-symbols-outlined"
+      matTooltip="Регистрация"
+    >
+      <mat-icon>edit_square</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

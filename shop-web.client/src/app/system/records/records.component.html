@@ -1,0 +1,68 @@
+<div class="container">
+  <h1 *ngIf="this.auth.currentUserId" class="page-title">Ваша корзина</h1>
+  <h1 *ngIf="this.auth.currentUserId" class="page-subtitle">
+    К оплате: {{ getAllPrice() }} $
+  </h1>
+
+  <div class="enter" *ngIf="!this.auth.currentUserId">
+    <button
+      class="enter"
+      color="primary"
+      mat-raised-button
+      routerLink="/auth/login"
+    >
+      Войти
+    </button>
+  </div>
+  <ul class="products">
+    <li class="product" *ngFor="let product of userProducts">
+      <p class="title">{{ product.name }}</p>
+      <p class="content">{{ product.description }}</p>
+      <div class="footer">
+        <mat-form-field class="count-select-form">
+          <button
+            matPrefix
+            mat-icon-button
+            class="minus"
+            (click)="deacrese(product)"
+          >
+            <mat-icon>expand_more</mat-icon>
+          </button>
+          <input
+            class="count-select"
+            matInput
+            placeholder="Количество"
+            type="number"
+            [(ngModel)]="product.cartCount"
+          />
+          <button
+            matSuffix
+            mat-icon-button
+            class="plus"
+            (click)="increase(product)"
+          >
+            <mat-icon>expand_less</mat-icon>
+          </button>
+        </mat-form-field>
+        <p class="price">{{ product.price }} $</p>
+        <button
+          class="add-to-cart"
+          (click)="deleteFromCart(product)"
+          mat-stroked-button
+          color="warn"
+        >
+          Удалить
+        </button>
+      </div>
+    </li>
+    <button
+      class="pay"
+      routerLink="/system/payment"
+      mat-raised-button
+      color="primary"
+      [disabled]="!userProducts.length"
+    >
+      Перейти к оплате
+    </button>
+  </ul>
+</div>

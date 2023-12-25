@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 150px;
+}
+
+.container {
+  width: 450px;
+  margin: 0 auto;
+}
+
+mat-card {
+  min-height: 400px;
+  margin: 0 auto;
+  width: 800px;
+}

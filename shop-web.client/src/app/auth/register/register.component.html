@@ -1,0 +1,109 @@
+<form
+  autocomplete="off"
+  [formGroup]="registerForm"
+  (ngSubmit)="submitRegistration()"
+>
+  <h1 class="form-title">Регистрация</h1>
+  <button
+    mat-icon-button
+    class="login-btn material-symbols-outlined"
+    [routerLink]="['/auth', 'login']"
+    matTooltip="Войти"
+  >
+    <mat-icon>login</mat-icon>
+  </button>
+
+  <mat-form-field>
+    <mat-label>E-mail:</mat-label>
+    <input
+      id="email"
+      type="text"
+      formControlName="email"
+      placeholder="Вписать email..."
+      matInput
+      #email
+    />
+    <button
+      *ngIf="email.value.trim()"
+      (click)="clearLogin()"
+      type="button"
+      mat-icon-button
+      matSuffix
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint *ngIf="registerForm.get('email')?.touched">
+      <mat-hint *ngIf="registerForm.get('email')?.hasError('required')"
+        >Email не может быть пустым.</mat-hint
+      >
+      <mat-hint *ngIf="registerForm.get('email')?.hasError('email')"
+        >Введите корректный email.</mat-hint
+      ><mat-hint *ngIf="registerForm.get('email')?.hasError('forbiddenEmail')"
+        >Email уже занят.</mat-hint
+      >
+    </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Пароль:</mat-label>
+    <input
+      id="password"
+      type="text"
+      formControlName="password"
+      placeholder="Вписать пароль..."
+      matInput
+      #password
+    />
+    <button
+      *ngIf="password.value.trim()"
+      (click)="clearPassword()"
+      type="button"
+      mat-icon-button
+      matSuffix
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint *ngIf="registerForm.get('password')?.touched">
+      <mat-hint *ngIf="registerForm.get('password')?.hasError('required')"
+        >Пароль не может быть пустым.</mat-hint
+      >
+      <mat-hint *ngIf="registerForm.get('password')?.hasError('minlength')"
+        >Минимум 6 символов. Сейчас:
+        {{ registerForm.get("password")?.value.length }}</mat-hint
+      >
+    </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Имя:</mat-label>
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      placeholder="Вписать имя..."
+      matInput
+      #name
+    />
+    <button *ngIf="name.value.trim()" type="button" mat-icon-button matSuffix>
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint
+      *ngIf="
+        registerForm.get('name')?.touched &&
+        registerForm.get('name')?.hasError('required')
+      "
+    >
+      Имя не может быть пустым.
+    </mat-hint>
+  </mat-form-field>
+  <mat-slide-toggle formControlName="agree"
+    >Согласен с условиями пользования</mat-slide-toggle
+  >
+  <button
+    class="submit"
+    type="submit"
+    color="primary"
+    [disabled]="!registerForm.valid"
+    mat-raised-button
+  >
+    Зарегистрироватся
+  </button>
+</form>

@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  height: 10%;
+}
+
+mat-toolbar {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-name {
+  padding: 0 15px;
+}
+
+.date {
+  opacity: 80%;
+}
+
+.links-list {
+  display: flex;
+  gap: 20px;
+  /* margin: 20px auto; */
+}
+
+.link {
+  position: relative;
+  padding: 3px 5px;
+  border-radius: 3px;
+  list-style: none;
+  text-decoration: none;
+}
+
+.link.active::before {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 5px;
+  border-bottom: 3px solid #ffffff59;
+}
+
+.link:hover {
+  background-color: #ffffff21;
+  transition: background-color 0.2s ease-in-out;
+}
